@@ -1,7 +1,6 @@
 package com.one.games.domain.vo;
 
 import com.one.games.domain.entity.Game;
-import com.one.games.domain.entity.GameDetails;
 import com.one.games.domain.entity.GameImg;
 import lombok.Data;
 

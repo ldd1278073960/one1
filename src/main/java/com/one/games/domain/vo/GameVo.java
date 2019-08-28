@@ -1,19 +1,26 @@
 package com.one.games.domain.vo;
 
 import com.one.games.domain.entity.Game;
+import com.one.games.domain.entity.GameDetails;
 import com.one.games.domain.entity.GameImg;
 import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author Administrator
- */
 @Data
 public class GameVo extends Game {
 
     List<Game> findByGame;
 
 
-    List<GameImg> gameImgS;
+    /**
+     * 图片数组
+     */
+    List<GameImg> gameImgs;
+
+
+    /**
+     * 配置信息类
+     */
+    GameDetailsVo gameDetailsVo;
 }

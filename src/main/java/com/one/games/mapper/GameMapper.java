@@ -2,6 +2,7 @@ package com.one.games.mapper;
 
 
 import com.one.games.domain.entity.Game;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +29,12 @@ public interface GameMapper {
      * @return
      */
     List<Game> bastGame();
+
+
+    /**
+     * 游戏全部信息
+     * @param gameId
+     * @return
+     */
+    List<Game> gameInf(@Param("gameId") int gameId);
 }

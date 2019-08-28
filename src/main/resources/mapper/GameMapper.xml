@@ -18,7 +18,7 @@
     select g.game_id,g.game_name,img.game_img_url ,img.game_img_id
       from game g
     left join game_img img on g.game_id = img.game_id
-    where img.game_img_status = 0 and g.game_status = 0
+    where img.game_img_status = 0 and g.game_status = 0 and img.game_img_type = 1
   </select>
 
 

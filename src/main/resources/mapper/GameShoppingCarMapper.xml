@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.games.mapper.GameShoppingCartMapper">
+
+    <!-- 如果购物车中不存在这条数据就添加 -->
+    <insert id="insertGameShoppingCartVos">
+
+    </insert>
+
+    <!-- 做删除购物车数据的操作 -->
+    <update id="deleteGameShoppingCartVos">
+
+    </update>
+
+    <!-- 如果购物车中存在同一条数据就做+1的操作 -->
+    <update id="updateGameShoppingCartVos">
+
+    </update>
+
+    <!-- 查询购物车所有数据 -->
+    <select id="selectGameShoppingCartVos" resultType="com.one.games.domain.vo.GameShoppingCartVo">
+
+    </select>
+</mapper>

@@ -12,8 +12,11 @@ import java.util.List;
 @Data
 public class GameVo extends Game {
 
-    List<Game> findByGame;
+    /**
+     * 总游戏类
+     */
+    List<Game> GameS;
 
 
-    List<GameImg> gameImgS;
+    List<GameImg> gameImgs;
 }

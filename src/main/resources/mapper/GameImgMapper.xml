@@ -10,12 +10,8 @@
     <result column="game_id" jdbcType="INTEGER" property="gameId" />
   </resultMap>
 
-
   <select id="byFindGameImgVo" resultMap="GameImgResultMap">
-
     select gi.game_img_id,gi.game_img_url
       from game_img gi
   </select>
-
-
 </mapper>

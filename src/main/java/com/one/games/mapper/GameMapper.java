@@ -2,6 +2,7 @@ package com.one.games.mapper;
 
 
 import com.one.games.domain.entity.Game;
+import com.one.games.domain.vo.GameVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -37,4 +38,24 @@ public interface GameMapper {
      * @return
      */
     List<Game> gameInf(@Param("gameId") int gameId);
+
+    /**
+     * 根据游戏名字查找游戏信息
+     * @param gameName
+     * @return
+     */
+    Game search(@Param("gameName")String gameName);
+
+    /**
+     * 根据游戏名字查找游戏图片
+     * @param gameName
+     * @return
+     */
+    Game searchImg(@Param("gameName") String gameName);
+
+    /**
+     * 游戏页面图片展示
+     * @return
+     */
+    List<GameVo> gameIndex();
 }

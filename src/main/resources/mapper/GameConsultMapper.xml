@@ -9,4 +9,18 @@
     <result column="game_id" jdbcType="INTEGER" property="gameId" />
   </resultMap>
 
+  <!--游戏咨询-->
+  <resultMap id="BaseResultMap2" type="com.one.games.domain.vo.GameConsultVo">
+    <id column="game_consult_id" jdbcType="INTEGER" property="gameConsultId" />
+    <result column="game_consult_title" jdbcType="VARCHAR" property="gameConsultTitle" />
+    <result column="game_consult_conte" jdbcType="VARCHAR" property="gameConsultConte" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result property="gameImgId" column="game_img_id"/>
+    <association property="gameImgVo" javaType="com.one.games.domain.vo.GameImgVo" resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap"/>
+  </resultMap>
+  <select id="consult" resultMap="BaseResultMap2">
+    select *
+    from game_consult gc
+      left join game_img gi on gc.game_img_id = gi.game_img_id
+  </select>
 </mapper>

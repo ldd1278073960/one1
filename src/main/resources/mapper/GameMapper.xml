@@ -94,4 +94,50 @@
     WHERE g.game_id = #{gameId};
   </select>
 
+    <!--关联gameDetails-->
+    <resultMap id="BaseResultMap" type="com.one.games.domain.vo.GameVo">
+        <id column="game_id" jdbcType="INTEGER" property="gameId" />
+        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+        <result column="game_id" property="gameId"/>
+        <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo" resultMap="com.one.games.mapper.GameDetailsMapper.BaseResultMap2">
+
+        </association>
+    </resultMap>
+   <!--关联图片-->
+    <resultMap id="BaseResultMap2" type="com.one.games.domain.vo.GameVo">
+        <id column="game_id" jdbcType="INTEGER" property="gameId" />
+        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+        <result column="game_id" property="gameId"/>
+        <association property="gameImg" resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap"/>
+    </resultMap>
+
+    <!--根据名字查找游戏信息-->
+    <select id="search" resultMap="BaseResultMap">
+        select *
+        from game g
+        left join game_details gd on g.game_id = gd.game_id
+        left join game_conf gc on gd.game_details_id = gc.game_details_id
+        where g.game_name like concat(concat('%',#{gameName}),'%')
+    </select>
+
+    <!--根据名字查找游戏图片-->
+    <select id="searchImg" resultMap="BaseResultMap2">
+        select gi.game_id,gi.game_img_url
+        from game g,game_img gi
+        where g.game_id=gi.game_id
+        and g.game_name  like concat(concat('%',#{gameName}),'%')
+    </select>
+
+    <!--游戏图片页面-->
+    <select id="gameIndex" resultMap="BaseResultMap">
+
+        select *
+        from game g
+            left join game_details gd  on g.game_id = gd.game_id
+            left join game_img gi on gd.game_id=gi.game_id
+    </select>
 </mapper>

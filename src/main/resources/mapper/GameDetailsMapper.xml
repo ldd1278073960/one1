@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.games.mapper.GameDetailsMapper">
+
+  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.GameDetails">
+    <id column="game_details_id" jdbcType="INTEGER" property="gameDetailsId" />
+    <result column="game_details_sum" jdbcType="LONGVARCHAR" property="gameDetailsSum" />
+    <result column="game_details_conf" jdbcType="VARCHAR" property="gameDetailsConf" />
+    <result column="game_details_cretime" jdbcType="TIMESTAMP" property="gameDetailsCretime" />
+    <result column="game_details_time" jdbcType="TIMESTAMP" property="gameDetailsTime" />
+    <result column="game_details_downl" jdbcType="VARCHAR" property="gameDetailsDownl" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    game_details_id, game_details_sum, game_details_conf, game_details_cretime, game_details_time, 
+    game_details_downl, game_id
+  </sql>
+
+</mapper>

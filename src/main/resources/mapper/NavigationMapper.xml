@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.games.mapper.NavigationMapper">
+
+  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.Navigation">
+    <id column="navigation_id" jdbcType="INTEGER" property="navigationId" />
+    <result column="navgation_name" jdbcType="VARCHAR" property="navgationName" />
+    <result column="navgation_status" jdbcType="INTEGER" property="navgationStatus" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    navigation_id, navgation_name, navgation_status
+  </sql>
+</mapper>

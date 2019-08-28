@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.games.mapper.GameConfMapper">
+
+  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.GameConf">
+    <id column="game_conf_id" jdbcType="INTEGER" property="gameConfId" />
+    <result column="game_details_id" jdbcType="INTEGER" property="gameDetailsId" />
+    <result column="game_conf_recom_os" jdbcType="VARCHAR" property="gameConfRecomOs" />
+    <result column="game_conf_recom_cpu" jdbcType="VARCHAR" property="gameConfRecomCpu" />
+    <result column="game_conf_recom_mem" jdbcType="VARCHAR" property="gameConfRecomMem" />
+    <result column="game_conf_recom_gra" jdbcType="VARCHAR" property="gameConfRecomGra" />
+    <result column="game_conf_recom_inter" jdbcType="VARCHAR" property="gameConfRecomInter" />
+    <result column="game_conf_low_os" jdbcType="VARCHAR" property="gameConfLowOs" />
+    <result column="game_conf_low_cpu" jdbcType="VARCHAR" property="gameConfLowCpu" />
+    <result column="game_conf_low_mem" jdbcType="VARCHAR" property="gameConfLowMem" />
+    <result column="game_conf_low_gar" jdbcType="VARCHAR" property="gameConfLowGar" />
+    <result column="game_conf_low_inter" jdbcType="VARCHAR" property="gameConfLowInter" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    game_conf_id, game_details_id, game_conf_recom_os, game_conf_recom_cpu, game_conf_recom_mem,
+    game_conf_recom_gra, game_conf_recom_inter, game_conf_low_os, game_conf_low_cpu, 
+    game_conf_low_mem, game_conf_low_gar, game_conf_low_inter, game_id
+  </sql>
+
+</mapper>

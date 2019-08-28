@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.games.mapper.ForumMapper">
+
+
+  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.Forum">
+    <id column="forum_id" jdbcType="INTEGER" property="forumId" />
+    <result column="forum_title" jdbcType="VARCHAR" property="forumTitle" />
+    <result column="fprum_cretime" jdbcType="TIMESTAMP" property="fprumCretime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+  </resultMap>
+
+</mapper>

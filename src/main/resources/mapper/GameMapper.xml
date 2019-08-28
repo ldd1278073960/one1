@@ -60,7 +60,7 @@
         <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo">
             <id property="gameDetailsId" column="game_details_id"/>
             <result property="gameDetailsSum" column="game_details_sum"/>
-            <result property="gameDetailsCretime" column="game_details_cretime"/>
+            <result property="gameDetailsTime" column="game_details_time"/>
             <result property="gameDetailsDownl" column="game_details_downl"/>
             <association property="gameConf" javaType="com.one.games.domain.entity.GameConf">
                 <id property="gameConfId" column="game_conf_id"/>
@@ -86,7 +86,7 @@
         im.game_id, im.game_img_url, gc.game_conf_recom_os, gc.game_conf_recom_cpu,
         gc.game_conf_recom_mem, gc.game_conf_recom_gra, gc.game_conf_recom_inter,
         gc.game_conf_low_os, gc.game_conf_low_cpu, gc.game_conf_low_mem, gc.game_conf_low_gar,
-        gc.game_conf_low_inter, de.game_details_sum, de.game_details_cretime, de.game_details_downl
+        gc.game_conf_low_inter, de.game_details_sum, de.game_details_time, de.game_details_downl
     from game g
     LEFT JOIN game_img im ON g.game_id = im.game_id
     LEFT JOIN game_conf gc ON g.game_id = gc.game_id

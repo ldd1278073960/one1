@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
+
 @Data
 public class GameVo extends Game {
 

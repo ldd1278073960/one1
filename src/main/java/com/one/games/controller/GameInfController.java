@@ -5,6 +5,7 @@ import com.one.games.domain.entity.Game;
 
 import com.one.games.domain.entity.GameComment;
 import com.one.games.service.GameInfService;
+import com.one.games.utils.RecommendGame;
 import com.one.games.utils.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +53,19 @@ public class GameInfController {
         }
     }
 
+    /**
+     * 游戏推荐
+     * @return
+     */
+    @RequestMapping("recommendGame")
+    public Object recommendGame(){
+        try {
+            RecommendGame recommendGame = gameInfService.recommendGame();
 
+            return Result.success(recommendGame);
+        }catch (Exception e){
+
+            return Result.error();
+        }
+    }
 }

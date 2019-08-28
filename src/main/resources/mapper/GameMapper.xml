@@ -94,4 +94,13 @@
     WHERE g.game_id = #{gameId};
   </select>
 
+
+    <!--根据游戏类型搜索游戏-->
+    <select id="recommedGame" resultMap="bastGame">
+        SELECT g.game_id, g.game_name, img.game_img_url
+        FROM game g
+        LEFT JOIN game_img img ON g.game_id = img.game_id
+        WHERE g.game_type_id = #{gameType} AND g.game_status = 0 LIMIT #{howMany}
+    </select>
+
 </mapper>

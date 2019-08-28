@@ -2,6 +2,7 @@ package com.one.games.service;
 
 import com.one.games.domain.entity.Game;
 import com.one.games.domain.entity.GameComment;
+import com.one.games.utils.RecommendGame;
 
 import java.util.List;
 
@@ -20,5 +21,11 @@ public interface GameInfService {
      * @return
      */
     List<GameComment> gameComment(int gameId);
+
+    /**
+     * 推荐游戏
+     * @return
+     */
+    RecommendGame recommendGame();
 
 }

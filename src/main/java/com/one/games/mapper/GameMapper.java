@@ -16,4 +16,16 @@ public interface GameMapper {
      */
     List<Game> findByGame();
 
+
+    /**
+     * 返回首页游戏轮播图
+     * @return
+     */
+    List<Game> homeOnlineGameInf();
+
+    /**
+     * 评价最高的游戏
+     * @return
+     */
+    List<Game> bastGame();
 }

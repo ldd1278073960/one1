@@ -1,5 +1,6 @@
 package com.one.games.domain.entity;
 
+
 import java.util.Date;
 
 public class ForumComment {

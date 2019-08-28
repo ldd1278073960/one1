@@ -22,4 +22,31 @@
   </select>
 
 
+  <!--首页网游推荐-->
+  <select id="homeOnlineGameInf" resultMap="bastGame">
+    select g.game_id, g.game_name, img.game_img_url
+    from game g
+      LEFT JOIN game_img img ON g.game_id = img.game_id
+    WHERE g.game_status = 0 AND g.game_type_id = 1 AND img.game_img_status = 0;
+  </select>
+
+  <resultMap id="bastGame" type="com.one.games.domain.vo.GameVo">
+    <id property="gameId" column="game_id"/>
+    <result property="gameName" column="game_name"/>
+    <result property="gameDetails" column="game_deatils"/>
+    <result property="gameGrade" column="game_grade"/>
+    <collection property="gameImgs" ofType="com.one.games.domain.entity.GameImg">
+      <id property="gameImgId" column="game_img_id"/>
+      <result property="gameImgUrl" column="game_img_url"/>
+    </collection>
+  </resultMap>
+
+  <!--首页最佳游戏榜前四-->
+  <select id="bastGame" resultMap="bastGame">
+    SELECT g.game_id, g.game_name, g.game_details, g.game_grade, img.game_img_url
+    FROM game g
+      LEFT JOIN game_img img ON g.game_id = img.game_id
+    WHERE g.game_status = 0 ORDER BY g.game_grade DESC LIMIT 4
+  </select>
+
 </mapper>

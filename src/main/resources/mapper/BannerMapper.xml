@@ -9,4 +9,15 @@
     <result column="banner_img" jdbcType="VARCHAR" property="bannerImg" />
   </resultMap>
 
+  <resultMap id="getBanner" type="com.one.games.domain.vo.BannerVo">
+    <id property="bannerId" column="banner_id"/>
+    <result property="bannerImg" column="banner_img"/>
+    <result property="gameId" column="game_id"/>
+  </resultMap>
+  <!--获取轮播-->
+  <select id="geiBanner" resultMap="getBanner">
+    SELECT b.game_id, b.banner_img, b.banner_id
+    FROM banner b
+    WHERE  b.banner_status=0 AND b.banner_type = '${type}'
+  </select>
 </mapper>

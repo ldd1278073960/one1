@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/gameImg")
-public class GameController {
+public class GameImgController {
 
     @Resource
     GameImgService gameImgService;

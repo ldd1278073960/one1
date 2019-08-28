@@ -6,11 +6,14 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 @Data
 public class GameVo extends Game {
 
     List<Game> findByGame;
 
 
-    List<GameImg> gameImgs;
+    List<GameImg> gameImgS;
 }

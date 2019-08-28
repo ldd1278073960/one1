@@ -1,7 +1,6 @@
 package com.one.games.mapper;
 
 
-import com.one.games.domain.vo.GameImgVo;
 import com.one.games.domain.vo.GameVo;
 
 import java.util.List;

@@ -1,8 +1,6 @@
 package com.one.games.service.impl;
 
 
-import com.one.games.domain.entity.Game;
-import com.one.games.domain.vo.GameImgVo;
 import com.one.games.domain.vo.GameVo;
 import com.one.games.mapper.GameImgMapper;
 import com.one.games.mapper.GameMapper;
@@ -20,9 +18,6 @@ public class GameImgServiceImpl implements GameImgService{
 
     @Resource
     GameImgMapper gameImgMapper;
-
-    @Resource
-    GameMapper gameMapper;
 
     @Override
     public List<GameVo> findByGameImg() {

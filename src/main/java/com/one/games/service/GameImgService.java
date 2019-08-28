@@ -1,6 +1,5 @@
 package com.one.games.service;
 
-import com.one.games.domain.vo.GameImgVo;
 import com.one.games.domain.vo.GameVo;
 
 import java.util.List;
@@ -15,7 +14,5 @@ public interface GameImgService {
      * @return
      */
     List<GameVo> findByGameImg();
-
-
 
 }

@@ -29,7 +29,7 @@ public class GameDetails {
     /**
      * 游戏发售时间
      */
-    private Date gameDetailsTime;
+    private String gameDetailsTime;
 
     /**
      * 游戏下载地址

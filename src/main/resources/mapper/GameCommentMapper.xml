@@ -9,4 +9,11 @@
     <result column="game_id" jdbcType="INTEGER" property="gameId" />
   </resultMap>
 
+
+    <select id="findGameComment" resultMap="BaseResultMap">
+      SELECT gc.game_comment_content, gc.user_id, gc.game_comment_id
+      FROM game_comment gc
+      WHERE gc.game_id = #{gameId};
+    </select>
+
 </mapper>

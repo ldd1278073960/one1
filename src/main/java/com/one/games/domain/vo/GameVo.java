@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
+
 @Data
 public class GameVo extends Game {
 
@@ -17,6 +18,14 @@ public class GameVo extends Game {
      */
     List<Game> GameS;
 
-
+    /**
+     * 图片数组
+     */
     List<GameImg> gameImgs;
+
+
+    /**
+     * 配置信息类
+     */
+    GameDetailsVo gameDetailsVo;
 }

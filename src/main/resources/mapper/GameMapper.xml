@@ -49,4 +49,58 @@
     WHERE g.game_status = 0 ORDER BY g.game_grade DESC LIMIT 4
   </select>
 
+
+
+    <!--游戏完整的信息-->
+    <resultMap id="gameInf" type="com.one.games.domain.vo.GameVo">
+        <id property="gameId" column="game_id"/>
+        <result property="gameName" column="game_name"/>
+        <result property="gameDetails" column="game_details"/>
+        <result property="gameGrade" column="game_grade"/>
+        <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo">
+            <id property="gameDetailsId" column="game_details_id"/>
+            <result property="gameDetailsSum" column="game_details_sum"/>
+            <result property="gameDetailsTime" column="game_details_time"/>
+            <result property="gameDetailsDownl" column="game_details_downl"/>
+            <association property="gameConf" javaType="com.one.games.domain.entity.GameConf">
+                <id property="gameConfId" column="game_conf_id"/>
+                <result property="gameConfRecomOs" column="game_conf_recom_os"/>
+                <result property="gameConfRecomCpu" column="game_conf_recom_cpu"/>
+                <result property="gameConfRecomMem" column="game_conf_recom_mem"/>
+                <result property="gameConfRecomGra" column="game_conf_recom_gra"/>
+                <result property="gameConfRecomInter" column="game_conf_recom_inter"/>
+                <result property="gameConfLowOs" column="game_conf_low_os"/>
+                <result property="gameConfLowCpu" column="game_conf_low_cpu"/>
+                <result property="gameConfLowMem" column="game_conf_low_mem"/>
+                <result property="gameConfLowGar" column="game_conf_low_gar"/>
+                <result property="gameConfLowInter" column="game_conf_low_inter"/>
+            </association>
+        </association>
+        <collection property="gameImgs" ofType="com.one.games.domain.entity.GameImg">
+            <id property="gameImgId" column="game_img_id"/>
+            <result property="gameImgUrl" column="game_img_url"/>
+        </collection>
+    </resultMap>
+  <select id="gameInf" resultMap="gameInf" >
+    select g.game_id, g.game_name, g.game_details, g.game_grade,
+        im.game_id, im.game_img_url, gc.game_conf_recom_os, gc.game_conf_recom_cpu,
+        gc.game_conf_recom_mem, gc.game_conf_recom_gra, gc.game_conf_recom_inter,
+        gc.game_conf_low_os, gc.game_conf_low_cpu, gc.game_conf_low_mem, gc.game_conf_low_gar,
+        gc.game_conf_low_inter, de.game_details_sum, de.game_details_time, de.game_details_downl
+    from game g
+    LEFT JOIN game_img im ON g.game_id = im.game_id
+    LEFT JOIN game_conf gc ON g.game_id = gc.game_id
+    LEFT JOIN game_details de ON g.game_id = de.game_id
+    WHERE g.game_id = #{gameId};
+  </select>
+
+
+    <!--根据游戏类型搜索游戏-->
+    <select id="recommedGame" resultMap="bastGame">
+        SELECT g.game_id, g.game_name, img.game_img_url
+        FROM game g
+        LEFT JOIN game_img img ON g.game_id = img.game_id
+        WHERE g.game_type_id = #{gameType} AND g.game_status = 0 LIMIT #{howMany}
+    </select>
+
 </mapper>

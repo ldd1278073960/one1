@@ -8,7 +8,7 @@
     <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
     <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
 
-    <collection property="gameImgS"
+    <collection property="gameImgs"
                 resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap">
     </collection>
   </resultMap>

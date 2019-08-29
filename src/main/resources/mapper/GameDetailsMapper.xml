@@ -17,4 +17,27 @@
     game_details_downl, game_id
   </sql>
 
+
+  <resultMap id="gameDetailsVo" type="com.one.games.domain.vo.GameDetailsVo">
+    <id property="gameDetailsId" column="game_details_id"/>
+    <result property="gameDetailsSum" column="game_details_sum"/>
+    <result property="gameDetailsTime" column="game_details_time"/>
+    <result property="gameDetailsDownl" column="game_details_downl"/>
+
+    <association property="gameConf" javaType="com.one.games.domain.entity.GameConf">
+      <id property="gameConfId" column="game_conf_id"/>
+      <result property="gameConfRecomOs" column="game_conf_recom_os"/>
+      <result property="gameConfRecomCpu" column="game_conf_recom_cpu"/>
+      <result property="gameConfRecomMem" column="game_conf_recom_mem"/>
+      <result property="gameConfRecomGra" column="game_conf_recom_gra"/>
+      <result property="gameConfRecomInter" column="game_conf_recom_inter"/>
+      <result property="gameConfLowOs" column="game_conf_low_os"/>
+      <result property="gameConfLowCpu" column="game_conf_low_cpu"/>
+      <result property="gameConfLowMem" column="game_conf_low_mem"/>
+      <result property="gameConfLowGar" column="game_conf_low_gar"/>
+      <result property="gameConfLowInter" column="game_conf_low_inter"/>
+    </association>
+  </resultMap>
+
+
 </mapper>

@@ -2,17 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.games.mapper.GameCommentMapper">
 
-  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.GameComment">
+  <resultMap id="BaseResultMap" type="com.one.games.domain.vo.GameCommentVo">
     <id column="game_comment_id" jdbcType="INTEGER" property="gameCommentId" />
     <result column="game_comment_content" jdbcType="VARCHAR" property="gameCommentContent" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <association property="user" javaType="com.one.games.domain.entity.User">
+      <id property="userId" column="user_id"/>
+      <result property="userName" column="user_name"/>
+    </association>
   </resultMap>
 
-
     <select id="findGameComment" resultMap="BaseResultMap">
-      SELECT gc.game_comment_content, gc.user_id, gc.game_comment_id
+      SELECT gc.game_comment_content, gc.user_id, gc.game_comment_id, u.user_name
       FROM game_comment gc
+      LEFT JOIN user u ON gc.user_id = u.user_id
       WHERE gc.game_id = #{gameId};
     </select>
 

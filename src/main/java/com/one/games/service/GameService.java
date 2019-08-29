@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface GameService {
     Game search(String gameName);
-    Game searchImg(String gameName);
     List<GameVo> gameIndex();
     List<GameConsult> consult();
 }

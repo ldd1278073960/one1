@@ -47,13 +47,6 @@ public interface GameMapper {
     Game search(@Param("gameName")String gameName);
 
     /**
-     * 根据游戏名字查找游戏图片
-     * @param gameName
-     * @return
-     */
-    Game searchImg(@Param("gameName") String gameName);
-
-    /**
      * 游戏页面图片展示
      * @return
      */

@@ -33,21 +33,6 @@ public class SearchController {
         }
     }
 
-    /**
-     * 根据名字查找游戏图片
-     * @param gameName
-     * @return
-     */
-    @RequestMapping("/searchImg")
-    public Result url(String gameName){
-        Game gameImg = null;
-        try {
-            gameImg = gameService.searchImg(gameName);
-            return Result.success(gameImg);
-        } catch (Exception e) {
-            return Result.error();
-        }
-    }
 
     /**
      * 咨询页面

@@ -23,11 +23,6 @@ public class GameServiceImpl implements GameService {
         return game;
     }
 
-    @Override
-    public Game searchImg(String gameName) {
-        Game gameImg = gameMapper.searchImg(gameName);
-        return gameImg;
-    }
 
     @Override
     public List<GameVo> gameIndex() {

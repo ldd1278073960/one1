@@ -12,5 +12,6 @@ import java.util.List;
 public class GameImgVo extends GameImg {
 
     List<GameImg> listGameImgVo;
+    GameConsultVo gameConsultVo;
 
 }

@@ -19,5 +19,4 @@
       LEFT JOIN user u ON gc.user_id = u.user_id
       WHERE gc.game_id = #{gameId};
     </select>
-
 </mapper>

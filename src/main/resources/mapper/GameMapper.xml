@@ -42,10 +42,10 @@
         <result property="gameName" column="game_name"/>
         <result property="gameDetails" column="game_deatils"/>
         <result property="gameGrade" column="game_grade"/>
-        <collection property="gameImgs" ofType="com.one.games.domain.entity.GameImg">
+        <association property="gameImg" javaType="com.one.games.domain.entity.GameImg">
             <id property="gameImgId" column="game_img_id"/>
             <result property="gameImgUrl" column="game_img_url"/>
-        </collection>
+        </association>
     </resultMap>
 
     <!--首页最佳游戏榜前四-->
@@ -87,7 +87,7 @@
         LEFT JOIN game_img im ON g.game_id = im.game_id
         LEFT JOIN game_conf gc ON g.game_id = gc.game_id
         LEFT JOIN game_details de ON g.game_id = de.game_id
-        WHERE im.game_img_type = 2 AND g.game_id = #{gameId};
+        WHERE  g.game_id = #{gameId};
     </select>
 
     <!--根据游戏类型搜索游戏-->

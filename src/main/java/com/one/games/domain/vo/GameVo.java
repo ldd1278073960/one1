@@ -28,4 +28,6 @@ public class GameVo extends Game {
      * 配置信息类
      */
     GameDetailsVo gameDetailsVo;
+
+    GameImg gameImg;
 }

@@ -45,7 +45,7 @@ public class HomeController {
      * 前四个最佳游戏
      * @return
      */
-    @RequestMapping("bastGame")
+    @RequestMapping("/bastGame")
     public Object getBastGame(){
         try {
 

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Tang
  */
-@RequestMapping("gameInf")
+@RequestMapping("/gameInf")
 @RestController
 public class GameInfController {
 
@@ -28,7 +28,7 @@ public class GameInfController {
      * @param gameId 游戏id
      * @return
      */
-    @RequestMapping("game")
+    @RequestMapping("/game")
     public Object gameInf(int gameId){
         try {
             List<Game> games = gameInfService.gameInf(gameId);
@@ -43,7 +43,7 @@ public class GameInfController {
      * @param gameId 游戏id
      * @return
      */
-    @RequestMapping("gameComment")
+    @RequestMapping("/gameComment")
     public Object gameComment(int gameId){
         try{
             List<GameComment> gameComments = gameInfService.gameComment(gameId);
@@ -57,7 +57,7 @@ public class GameInfController {
      * 游戏推荐
      * @return
      */
-    @RequestMapping("recommendGame")
+    @RequestMapping("/recommendGame")
     public Object recommendGame(){
         try {
             RecommendGame recommendGame = gameInfService.recommendGame();

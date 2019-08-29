@@ -31,10 +31,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<GameVo> gameIndex() {
-        System.out.println(1);
         List<GameVo> gameVos = gameMapper.gameIndex();
-        System.out.println(2);
-
         return gameVos;
     }
 

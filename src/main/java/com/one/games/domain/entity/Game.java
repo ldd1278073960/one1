@@ -32,6 +32,6 @@ public class Game {
 
     private Double gameGrade;
 
-
+    private Double gamePrice;
 
 }

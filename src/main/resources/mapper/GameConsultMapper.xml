@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.games.mapper.GameConsultMapper">
 
-  <resultMap id="BaseResultMap" type="com.one.games.domain.entity.GameConsult">
+  <resultMap id="BaseResultMap" type="com.one.games.domain.vo.GameConsultVo">
     <id column="game_consult_id" jdbcType="INTEGER" property="gameConsultId" />
     <result column="game_consult_title" jdbcType="VARCHAR" property="gameConsultTitle" />
     <result column="game_consult_conte" jdbcType="VARCHAR" property="gameConsultConte" />

@@ -26,7 +26,7 @@
     <result column="game_details_time" jdbcType="TIMESTAMP" property="gameDetailsTime" />
     <result column="game_details_downl" jdbcType="VARCHAR" property="gameDetailsDownl" />
     <result column="game_id" jdbcType="INTEGER" property="gameId" />
-    <association property="gameImgVo" javaType="com.one.games.domain.vo.GameImgVo"  resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap"/>
+    <association property="gameImgVo" javaType="com.one.games.domain.vo.GameImgVo"  resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap2"/>
   </resultMap>
 
 </mapper>

@@ -101,6 +101,7 @@
         <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
         <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
         <result column="game_id" property="gameId"/>
+        <result property="gameDetails" column="game_details"/>
         <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo" resultMap="com.one.games.mapper.GameDetailsMapper.BaseResultMap2">
 
         </association>
@@ -120,16 +121,14 @@
         select *
         from game g
         left join game_details gd on g.game_id = gd.game_id
-        left join game_conf gc on gd.game_details_id = gc.game_details_id
+        left join game_img img on g.game_id = img.game_id
+        left join game_consult gc on g.game_id = gc.game_id
         where g.game_name like concat(concat('%',#{gameName}),'%')
-    </select>
-
-    <!--根据名字查找游戏图片-->
-    <select id="searchImg" resultMap="BaseResultMap2">
-        select gi.game_id,gi.game_img_url
-        from game g,game_img gi
-        where g.game_id=gi.game_id
-        and g.game_name  like concat(concat('%',#{gameName}),'%')
+       <!-- select *
+        from game g
+        left join game_details gd on g.game_id = gd.game_id
+        left join game_conf gc on gd.game_details_id = gc.game_details_id
+        where g.game_name like concat(concat('%',#{gameName}),'%')-->
     </select>
 
     <!--游戏图片页面-->
@@ -139,5 +138,9 @@
         from game g
             left join game_details gd  on g.game_id = gd.game_id
             left join game_img gi on gd.game_id=gi.game_id
+            where gi.game_img_type=1
+        limit 12
     </select>
+
+
 </mapper>

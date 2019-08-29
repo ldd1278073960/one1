@@ -1,7 +1,6 @@
 package com.one.games.service;
 
 import com.one.games.domain.vo.GameShoppingCartVo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,21 +21,23 @@ public interface GameShoppingCartService {
      * @param gameCartId
      * @return
      */
-    List<GameShoppingCartVo> deleteGameShoppingCartVos(int gameCartId);
+    int deleteGameShoppingCartVos(int gameCartId);
+
 
     /**
-     * 如果购物车中存在同一条数据就做+1的操作
-     * @param gameCartId
-     * @return
-     */
-    List<GameShoppingCartVo> updateGameShoppingCartVos(int gameCartId);
-
-    /**
-     * 如果购物车中不存在这条数据就添加
+     * 根据某条Id查询数据库的某条数据,如果存在这条数据就做数量+1的操作，如果不存在就做添加这条数据的操作
+     * @param cartId
      * @param gameId
-     * @param userId
      * @return
      */
-    List<GameShoppingCartVo> insertGameShoppingCartVos(int gameId ,int userId);
+    int selectCartId(int cartId,int gameId);
 
+
+    /**
+     * 在购物车中做增加减少商品数量的操作
+     * @param gameCartId
+     * @param num
+     * @return
+     */
+    int shopCartNum(int gameCartId,int num);
 }

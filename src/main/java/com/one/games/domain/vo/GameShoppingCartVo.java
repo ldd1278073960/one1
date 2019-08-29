@@ -1,6 +1,7 @@
 package com.one.games.domain.vo;
 
 import com.one.games.domain.entity.Game;
+import com.one.games.domain.entity.GameImg;
 import com.one.games.domain.entity.GameShoppingCart;
 import com.one.games.domain.entity.User;
 import lombok.Data;
@@ -29,4 +30,9 @@ public class GameShoppingCartVo extends GameShoppingCart {
      * 一对多查询，用户表表
      */
     List<User> users;
+
+    /**
+     * 一对多查询，图片表
+     */
+    List<GameImg> gameImgs;
 }

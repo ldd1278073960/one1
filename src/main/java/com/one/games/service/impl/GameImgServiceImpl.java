@@ -18,6 +18,8 @@ public class GameImgServiceImpl implements GameImgService{
 
     @Resource
     GameMapper gameMapper;
+
+
     @Override
     public List<GameVo> findByGameImg() {
         List<GameVo> byGame = gameMapper.findByGame();

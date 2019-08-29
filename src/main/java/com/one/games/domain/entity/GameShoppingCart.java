@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class GameShoppingCart {
 
-    private Integer gameShopCart;
+    private Integer gameCartId;
 
     private Integer gameId;
 

@@ -4,21 +4,73 @@
 
     <!-- 如果购物车中不存在这条数据就添加 -->
     <insert id="insertGameShoppingCartVos">
+        insert into game_shopping_cart(game_id,user_id,num) values (#{gameId},#{userId},1)
 
     </insert>
 
     <!-- 做删除购物车数据的操作 -->
     <update id="deleteGameShoppingCartVos">
-
+      update game_shopping_cart cart
+          set cart.cart_status = 1
+        where cart.game_cart_id = #{gameCartId}
     </update>
 
     <!-- 如果购物车中存在同一条数据就做+1的操作 -->
     <update id="updateGameShoppingCartVos">
-
+      update game_shopping_cart c
+          set c.num = c.num + 1
+        where c.game_id = #{gameId} and c.user_id = #{userId} and c.cart_status = 0
     </update>
 
+    <resultMap id="userShop" type="com.one.games.domain.vo.GameShoppingCartVo">
+        <id property="gameCartId" column="game_cart_id"/>
+        <result property="num" column="num"/>
+
+        <collection property="games" resultMap="com.one.games.mapper.GameMapper.GameResultMap1">
+        </collection>
+
+        <collection property="users" resultMap="com.one.games.mapper.UserMapper.UserMapperResult">
+        </collection>
+
+        <collection property="gameImgs" resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap">
+
+        </collection>
+
+    </resultMap>
     <!-- 查询购物车所有数据 -->
-    <select id="selectGameShoppingCartVos" resultType="com.one.games.domain.vo.GameShoppingCartVo">
+    <select id="selectGameShoppingCartVos" resultMap="userShop">
+      select g.game_cart_id,g.num,g.create_date,g2.game_name,g2.game_price,g2.game_details,u.user_id,u.user_name,img.game_img_url
+          from game_shopping_cart g left join game g2 on g.game_id = g2.game_id
+        left join user u on g.user_id = u.user_id
+              left join game_img img on g2.game_id = img.game_id
+        where g.cart_status = 0 and g2.game_status = 0 and u.user_status = 0 and img.game_img_status = 0
+    </select>
+
+
+    <resultMap id="gameShopCart" type="com.one.games.domain.entity.GameShoppingCart">
+        <id property="gameCartId" column="game_cart_id"/>
+    </resultMap>
+    <!-- 根据某条Id查询数据库的某条数据 -->
+    <select id="selectCartId" resultMap="gameShopCart">
+
+        select c.game_cart_id
+        from game_shopping_cart c
+        where c.user_id = #{userId}
+        and c.game_id = #{gameId}
+        and c.cart_status = 0 limit 1
 
     </select>
+
+    <!-- 在购物车中做增加减少商品数量的操作 -->
+    <update id="shopCartNum">
+        update game_shopping_cart g
+        set
+        <if test="num != null and num == 0" >
+            g.num = g.num -1
+        </if>
+        <if test="num != null and num == 1">
+            g.num = g.num + 1
+        </if>
+        where g.cart_status = 0 and g.game_cart_id = #{gameCartId}
+    </update>
 </mapper>

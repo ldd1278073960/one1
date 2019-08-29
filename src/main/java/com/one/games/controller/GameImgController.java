@@ -30,7 +30,7 @@ public class GameImgController {
      * 图片画廊
      * @return
      */
-    @GetMapping("/gallery")
+    @GetMapping(value = "/gallery")
     public Result gameImgGallery(){
         try{
             List<GameVo> byGameImg = gameImgService.findByGameImg();

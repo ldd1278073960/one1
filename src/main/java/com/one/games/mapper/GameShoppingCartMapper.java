@@ -1,5 +1,6 @@
 package com.one.games.mapper;
 
+import com.one.games.domain.entity.GameShoppingCart;
 import com.one.games.domain.vo.GameShoppingCartVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,14 +23,15 @@ public interface GameShoppingCartMapper {
      * @param gameCartId
      * @return
      */
-    List<GameShoppingCartVo> deleteGameShoppingCartVos(@Param("gameCartId") int gameCartId);
+    int deleteGameShoppingCartVos(@Param("gameCartId") int gameCartId);
 
     /**
      * 如果购物车中存在同一条数据就做+1的操作
-     * @param gameCartId
+     * @param gameId
+     * @param userId
      * @return
      */
-    List<GameShoppingCartVo> updateGameShoppingCartVos(@Param("gameCartId") int gameCartId);
+    int updateGameShoppingCartVos(@Param("gameId") int gameId,@Param("userId") int userId);
 
     /**
      * 如果购物车中不存在这条数据就添加
@@ -37,5 +39,23 @@ public interface GameShoppingCartMapper {
      * @param userId
      * @return
      */
-    List<GameShoppingCartVo> insertGameShoppingCartVos(@Param("gameId") int gameId , @Param("userId") int userId);
+    int  insertGameShoppingCartVos(@Param("gameId") int gameId , @Param("userId") int userId);
+
+
+    /**
+     * 根据某条Id查询数据库的某条数据
+     * @param gameId
+     * @param userId
+     * @return
+     */
+    GameShoppingCart selectCartId(@Param("gameId") int gameId, @Param("userId") int userId);
+
+
+    /**
+     * 在购物车中做增加减少商品数量的操作
+     * @param gameCartId
+     * @param num
+     * @return
+     */
+    int shopCartNum(@Param("gameCartId")int gameCartId , @Param("num") int num);
 }

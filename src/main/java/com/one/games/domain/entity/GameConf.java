@@ -1,5 +1,8 @@
 package com.one.games.domain.entity;
 
+/**
+ * @author Administrator
+ */
 public class GameConf {
     /**
      * 游戏配置ID

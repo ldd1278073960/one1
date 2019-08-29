@@ -17,7 +17,7 @@ public interface GameMapper {
      * 总游戏表
      * @return
      */
-    List<Game> findByGame();
+    List<GameVo> findByGame();
 
 
     /**
@@ -49,19 +49,19 @@ public interface GameMapper {
     List<Game> recommedGame(@Param("gameType") int gameType,@Param("howMany") int howMany);
 
 
-    /**
-     * 游戏全部信息
-     * @param gameId
-     * @return
-     */
-    List<Game> gameInf(@Param("gameId") int gameId);
-
-    /**
-     * 推荐游戏(1为 网游 2为手游 3为页游 4为单机大作)
-     *
-     * @param gameType 游戏类型
-     * @param howMany  输出多少
-     * @return 游戏集合
-     */
-    List<Game> recommedGame(@Param("gameType") int gameType,@Param("howMany") int howMany);
+//    /**
+//     * 游戏全部信息
+//     * @param gameId
+//     * @return
+//     */
+//    List<Game> gameInf(@Param("gameId") int gameId);
+//
+//    /**
+//     * 推荐游戏(1为 网游 2为手游 3为页游 4为单机大作)
+//     *
+//     * @param gameType 游戏类型
+//     * @param howMany  输出多少
+//     * @return 游戏集合
+//     */
+//    List<Game> recommedGame(@Param("gameType") int gameType,@Param("howMany") int howMany);
 }

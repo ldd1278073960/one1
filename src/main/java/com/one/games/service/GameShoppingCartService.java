@@ -11,7 +11,7 @@ import java.util.List;
 public interface GameShoppingCartService {
 
     /**
-     * 购物车所有数据的查询
+     * 购物车所有数据的查询，页面展示的
      * @return
      */
     List<GameShoppingCartVo> selectGameShoppingCartVos();

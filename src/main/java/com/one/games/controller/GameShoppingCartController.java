@@ -4,6 +4,7 @@ import com.one.games.domain.vo.GameShoppingCartVo;
 import com.one.games.service.GameShoppingCartService;
 import com.one.games.utils.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -75,7 +76,7 @@ public class GameShoppingCartController {
      * @param num
      * @return
      */
-    @RequestMapping("/shopCartNum")
+    @PostMapping("/shopCartNum")
     public Result shopCartNum(int gameCartId , int num){
         try {
             int i = gameShoppingCartService.shopCartNum(gameCartId, num);

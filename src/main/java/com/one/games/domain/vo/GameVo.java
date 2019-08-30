@@ -29,5 +29,11 @@ public class GameVo extends Game {
      */
     GameDetailsVo gameDetailsVo;
 
+    /**
+     * 根据名字查图片
+     */
     GameImg gameImg;
+
+
+
 }

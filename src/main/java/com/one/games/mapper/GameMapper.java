@@ -3,8 +3,6 @@ package com.one.games.mapper;
 
 import com.one.games.domain.entity.Game;
 import org.apache.ibatis.annotations.Param;
-import com.one.games.domain.vo.GameVo;
-
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ public interface GameMapper {
      * 总游戏表
      * @return
      */
-    List<GameVo> findByGame();
+    List<Game> findByGame();
 
 
     /**
@@ -32,12 +30,26 @@ public interface GameMapper {
      */
     List<Game> bastGame();
 
+
     /**
      * 游戏全部信息
      * @param gameId
      * @return
      */
     List<Game> gameInf(@Param("gameId") int gameId);
+
+    /**
+     * 根据游戏名字查找游戏信息
+     * @param gameName
+     * @return
+     */
+    Game search(@Param("gameName")String gameName);
+
+    /**
+     * 游戏页面图片展示
+     * @return
+     */
+    List<GameVo> gameIndex();
 
     /**
      * 推荐游戏(1为 网游 2为手游 3为页游 4为单机大作)

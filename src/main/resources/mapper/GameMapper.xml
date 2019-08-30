@@ -2,28 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.games.mapper.GameMapper">
 
-    <resultMap id="GameResultMap" type="com.one.games.domain.vo.GameVo">
-        <id column="game_id" jdbcType="INTEGER" property="gameId"/>
-        <result column="game_name" jdbcType="VARCHAR" property="gameName"/>
-        <result column="game_status" jdbcType="INTEGER" property="gameStatus"/>
-        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId"/>
+  <resultMap id="GameResultMap" type="com.one.games.domain.vo.GameVo">
+    <id column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+    <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
 
-        <collection property="gameImgs"
-                    resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap">
-        </collection>
-    </resultMap>
+    <collection property="gameImgs"
+                resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap">
+    </collection>
+  </resultMap>
 
-    <!-- 图片画廊 -->
-    <select id="findByGame" resultMap="GameResultMap">
-        SELECT
-            g.game_id,
-            g.game_name,
-            img.game_img_url,
-            img.game_img_id
-        FROM game g
-            LEFT JOIN game_img img ON g.game_id = img.game_id
-        WHERE img.game_img_status = 0 AND g.game_status = 0
-    </select>
+  <!-- 图片画廊 -->
+  <select id="findByGame" resultMap="GameResultMap">
+    select g.game_id,g.game_name,img.game_img_url ,img.game_img_id
+      from game g
+    left join game_img img on g.game_id = img.game_id
+    where img.game_img_status = 0 and g.game_status = 0
+  </select>
 
 
     <!--首页网游推荐-->
@@ -64,14 +60,32 @@
     </select>
 
 
+
     <!--游戏完整的信息-->
     <resultMap id="gameInf" type="com.one.games.domain.vo.GameVo">
         <id property="gameId" column="game_id"/>
         <result property="gameName" column="game_name"/>
         <result property="gameDetails" column="game_details"/>
         <result property="gameGrade" column="game_grade"/>
-        <association property="gameDetailsVo" resultMap="com.one.games.mapper.GameDetailsMapper.gameDetailsVo"/>
-
+        <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo">
+            <id property="gameDetailsId" column="game_details_id"/>
+            <result property="gameDetailsSum" column="game_details_sum"/>
+            <result property="gameDetailsCretime" column="game_details_cretime"/>
+            <result property="gameDetailsDownl" column="game_details_downl"/>
+            <association property="gameConf" javaType="com.one.games.domain.entity.GameConf">
+                <id property="gameConfId" column="game_conf_id"/>
+                <result property="gameConfRecomOs" column="game_conf_recom_os"/>
+                <result property="gameConfRecomCpu" column="game_conf_recom_cpu"/>
+                <result property="gameConfRecomMem" column="game_conf_recom_mem"/>
+                <result property="gameConfRecomGra" column="game_conf_recom_gra"/>
+                <result property="gameConfRecomInter" column="game_conf_recom_inter"/>
+                <result property="gameConfLowOs" column="game_conf_low_os"/>
+                <result property="gameConfLowCpu" column="game_conf_low_cpu"/>
+                <result property="gameConfLowMem" column="game_conf_low_mem"/>
+                <result property="gameConfLowGar" column="game_conf_low_gar"/>
+                <result property="gameConfLowInter" column="game_conf_low_inter"/>
+            </association>
+        </association>
         <collection property="gameImgs" ofType="com.one.games.domain.entity.GameImg">
             <id property="gameImgId" column="game_img_id"/>
             <result property="gameImgUrl" column="game_img_url"/>
@@ -89,6 +103,7 @@
         LEFT JOIN game_details de ON g.game_id = de.game_id
         WHERE  g.game_id = #{gameId};
     </select>
+
 
     <!--根据游戏类型搜索游戏-->
     <select id="recommedGame" resultMap="bastGame">

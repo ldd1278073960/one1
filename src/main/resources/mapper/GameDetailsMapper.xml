@@ -17,6 +17,18 @@
     game_details_downl, game_id
   </sql>
 
+  <!--gameImgVo-->
+  <resultMap id="BaseResultMap2" type="com.one.games.domain.vo.GameDetailsVo">
+    <id column="game_details_id" jdbcType="INTEGER" property="gameDetailsId" />
+    <result column="game_details_sum" jdbcType="LONGVARCHAR" property="gameDetailsSum" />
+    <result column="game_details_conf" jdbcType="VARCHAR" property="gameDetailsConf" />
+    <result column="game_details_cretime" jdbcType="TIMESTAMP" property="gameDetailsCretime" />
+    <result column="game_details_time" jdbcType="TIMESTAMP" property="gameDetailsTime" />
+    <result column="game_details_downl" jdbcType="VARCHAR" property="gameDetailsDownl" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <association property="gameImgVo" javaType="com.one.games.domain.vo.GameImgVo"  resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap2"/>
+  </resultMap>
+
 
   <resultMap id="gameDetailsVo" type="com.one.games.domain.vo.GameDetailsVo">
     <id property="gameDetailsId" column="game_details_id"/>

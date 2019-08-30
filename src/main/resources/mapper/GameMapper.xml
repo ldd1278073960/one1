@@ -2,23 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.games.mapper.GameMapper">
 
-    <resultMap id="GameResultMap1" type="com.one.games.domain.vo.GameVo">
-        <id column="game_id" jdbcType="INTEGER" property="gameId" />
-        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
-        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
-        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
-        <result property="gamePrice" column="game_price"/>
-        <result property="gameDetails" column="game_details"/>
-    </resultMap>
-
   <resultMap id="GameResultMap" type="com.one.games.domain.vo.GameVo">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
     <result column="game_name" jdbcType="VARCHAR" property="gameName" />
     <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
     <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+
     <collection property="gameImgs"
                 resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap">
-
     </collection>
   </resultMap>
 
@@ -27,7 +18,7 @@
     select g.game_id,g.game_name,img.game_img_url ,img.game_img_id
       from game g
     left join game_img img on g.game_id = img.game_id
-    where img.game_img_status = 0 and g.game_status = 0 and img.game_img_type = 1
+    where img.game_img_status = 0 and g.game_status = 0
   </select>
 
 
@@ -69,7 +60,7 @@
         <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo">
             <id property="gameDetailsId" column="game_details_id"/>
             <result property="gameDetailsSum" column="game_details_sum"/>
-            <result property="gameDetailsTime" column="game_details_time"/>
+            <result property="gameDetailsCretime" column="game_details_cretime"/>
             <result property="gameDetailsDownl" column="game_details_downl"/>
             <association property="gameConf" javaType="com.one.games.domain.entity.GameConf">
                 <id property="gameConfId" column="game_conf_id"/>
@@ -95,7 +86,7 @@
         im.game_id, im.game_img_url, gc.game_conf_recom_os, gc.game_conf_recom_cpu,
         gc.game_conf_recom_mem, gc.game_conf_recom_gra, gc.game_conf_recom_inter,
         gc.game_conf_low_os, gc.game_conf_low_cpu, gc.game_conf_low_mem, gc.game_conf_low_gar,
-        gc.game_conf_low_inter, de.game_details_sum, de.game_details_time, de.game_details_downl
+        gc.game_conf_low_inter, de.game_details_sum, de.game_details_cretime, de.game_details_downl
     from game g
     LEFT JOIN game_img im ON g.game_id = im.game_id
     LEFT JOIN game_conf gc ON g.game_id = gc.game_id
@@ -111,5 +102,54 @@
         LEFT JOIN game_img img ON g.game_id = img.game_id
         WHERE g.game_type_id = #{gameType} AND g.game_status = 0 LIMIT #{howMany}
     </select>
+
+    <!--关联gameDetails-->
+    <resultMap id="BaseResultMap" type="com.one.games.domain.vo.GameVo">
+        <id column="game_id" jdbcType="INTEGER" property="gameId" />
+        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+        <result column="game_id" property="gameId"/>
+        <result property="gameDetails" column="game_details"/>
+        <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo" resultMap="com.one.games.mapper.GameDetailsMapper.BaseResultMap2">
+
+        </association>
+    </resultMap>
+   <!--关联图片-->
+    <resultMap id="BaseResultMap2" type="com.one.games.domain.vo.GameVo">
+        <id column="game_id" jdbcType="INTEGER" property="gameId" />
+        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+        <result column="game_id" property="gameId"/>
+        <association property="gameImg" resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap"/>
+    </resultMap>
+
+    <!--根据名字查找游戏信息-->
+    <select id="search" resultMap="BaseResultMap">
+        select *
+        from game g
+        left join game_details gd on g.game_id = gd.game_id
+        left join game_img img on g.game_id = img.game_id
+        left join game_consult gc on g.game_id = gc.game_id
+        where g.game_name like concat(concat('%',#{gameName}),'%')
+       <!-- select *
+        from game g
+        left join game_details gd on g.game_id = gd.game_id
+        left join game_conf gc on gd.game_details_id = gc.game_details_id
+        where g.game_name like concat(concat('%',#{gameName}),'%')-->
+    </select>
+
+    <!--游戏图片页面-->
+    <select id="gameIndex" resultMap="BaseResultMap">
+
+        select *
+        from game g
+            left join game_details gd  on g.game_id = gd.game_id
+            left join game_img gi on gd.game_id=gi.game_id
+            where gi.game_img_type=1
+        limit 12
+    </select>
+
 
 </mapper>

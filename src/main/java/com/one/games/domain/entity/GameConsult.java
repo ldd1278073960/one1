@@ -24,5 +24,6 @@ public class GameConsult {
      */
     private Integer gameId;
 
+    private Integer gameImgId;
 
 }

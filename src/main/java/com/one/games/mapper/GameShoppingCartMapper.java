@@ -13,7 +13,7 @@ import java.util.List;
 public interface GameShoppingCartMapper {
 
     /**
-     * 购物车所有数据的查询
+     * 购物车所有数据的查询，页面展示
      * @return
      */
     List<GameShoppingCartVo> selectGameShoppingCartVos();

@@ -12,7 +12,7 @@ import java.util.List;
 public interface GameMapper {
 
     /**
-     * 总游戏表
+     * 总游戏表,做图片画廊用的
      * @return
      */
     List<Game> findByGame();

@@ -76,27 +76,5 @@ public class GameShoppingCartServiceImpl implements GameShoppingCartService {
         return i;
     }
 
-    //    /**
-//     * 如果购物车中存在同一条数据就做+1的操作
-//     * @param gameCartId
-//     * @return
-//     */
-//    @Override
-//    public List<GameShoppingCartVo> updateGameShoppingCartVos(int gameCartId) {
-//        List<GameShoppingCartVo> gameShoppingCartVos = gameShoppingCartMapper.updateGameShoppingCartVos(gameCartId);
-//        return gameShoppingCartVos;
-//    }
-//
-//    /**
-//     * 如果购物车中不存在这条数据就添加
-//     * @param gameId
-//     * @param userId
-//     * @return
-//     */
-//    @Override
-//    public List<GameShoppingCartVo> insertGameShoppingCartVos(int gameId, int userId) {
-//        List<GameShoppingCartVo> gameShoppingCartVos = gameShoppingCartMapper.insertGameShoppingCartVos(gameId, userId);
-//        return gameShoppingCartVos;
-//    }
 
 }

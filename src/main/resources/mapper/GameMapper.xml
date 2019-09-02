@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.games.mapper.GameMapper">
 
+    <resultMap id="GameResultMap1" type="com.one.games.domain.vo.GameVo">
+        <id column="game_id" jdbcType="INTEGER" property="gameId" />
+        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
+        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
+        <result property="gamePrice" column="game_price"/>
+        <result property="gameDetails" column="game_details"/>
+    </resultMap>
+
   <resultMap id="GameResultMap" type="com.one.games.domain.vo.GameVo">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
     <result column="game_name" jdbcType="VARCHAR" property="gameName" />

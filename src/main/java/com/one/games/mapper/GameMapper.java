@@ -2,6 +2,7 @@ package com.one.games.mapper;
 
 
 import com.one.games.domain.entity.Game;
+import com.one.games.domain.vo.GameVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface GameMapper {
      * 总游戏表,做图片画廊用的
      * @return
      */
-    List<Game> findByGame();
+    List<GameVo> findByGame();
 
 
     /**

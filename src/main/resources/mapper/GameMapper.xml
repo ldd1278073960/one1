@@ -31,32 +31,42 @@
   </select>
 
 
-  <!--首页网游推荐-->
-  <select id="homeOnlineGameInf" resultMap="bastGame">
-    select g.game_id, g.game_name, img.game_img_url
-    from game g
-      LEFT JOIN game_img img ON g.game_id = img.game_id
-    WHERE g.game_status = 0 AND g.game_type_id = 1 AND img.game_img_status = 0;
-  </select>
+    <!--首页网游推荐-->
+    <select id="homeOnlineGameInf" resultMap="bastGame">
+        SELECT
+            g.game_id,
+            g.game_name,
+            img.game_img_url
+        FROM game g
+            LEFT JOIN game_img img ON g.game_id = img.game_id
+        WHERE g.game_status = 0 AND g.game_type_id = 1 AND img.game_img_status = 0;
+    </select>
 
-  <resultMap id="bastGame" type="com.one.games.domain.vo.GameVo">
-    <id property="gameId" column="game_id"/>
-    <result property="gameName" column="game_name"/>
-    <result property="gameDetails" column="game_deatils"/>
-    <result property="gameGrade" column="game_grade"/>
-    <collection property="gameImgs" ofType="com.one.games.domain.entity.GameImg">
-      <id property="gameImgId" column="game_img_id"/>
-      <result property="gameImgUrl" column="game_img_url"/>
-    </collection>
-  </resultMap>
+    <resultMap id="bastGame" type="com.one.games.domain.vo.GameVo">
+        <id property="gameId" column="game_id"/>
+        <result property="gameName" column="game_name"/>
+        <result property="gameDetails" column="game_deatils"/>
+        <result property="gameGrade" column="game_grade"/>
+        <association property="gameImg" javaType="com.one.games.domain.entity.GameImg">
+            <id property="gameImgId" column="game_img_id"/>
+            <result property="gameImgUrl" column="game_img_url"/>
+        </association>
+    </resultMap>
 
-  <!--首页最佳游戏榜前四-->
-  <select id="bastGame" resultMap="bastGame">
-    SELECT g.game_id, g.game_name, g.game_details, g.game_grade, img.game_img_url
-    FROM game g
-      LEFT JOIN game_img img ON g.game_id = img.game_id
-    WHERE g.game_status = 0 ORDER BY g.game_grade DESC LIMIT 4
-  </select>
+    <!--首页最佳游戏榜前四-->
+    <select id="bastGame" resultMap="bastGame">
+        SELECT
+            g.game_id,
+            g.game_name,
+            g.game_details,
+            g.game_grade,
+            img.game_img_url
+        FROM game g
+            LEFT JOIN game_img img ON g.game_id = img.game_id
+        WHERE g.game_status = 0
+        ORDER BY g.game_grade DESC
+        LIMIT 4
+    </select>
 
 
 
@@ -90,18 +100,18 @@
             <result property="gameImgUrl" column="game_img_url"/>
         </collection>
     </resultMap>
-  <select id="gameInf" resultMap="gameInf" >
-    select g.game_id, g.game_name, g.game_details, g.game_grade,
+    <select id="gameInf" resultMap="gameInf">
+        SELECT g.game_id, g.game_name, g.game_details, g.game_grade,
         im.game_id, im.game_img_url, gc.game_conf_recom_os, gc.game_conf_recom_cpu,
         gc.game_conf_recom_mem, gc.game_conf_recom_gra, gc.game_conf_recom_inter,
         gc.game_conf_low_os, gc.game_conf_low_cpu, gc.game_conf_low_mem, gc.game_conf_low_gar,
-        gc.game_conf_low_inter, de.game_details_sum, de.game_details_cretime, de.game_details_downl
-    from game g
-    LEFT JOIN game_img im ON g.game_id = im.game_id
-    LEFT JOIN game_conf gc ON g.game_id = gc.game_id
-    LEFT JOIN game_details de ON g.game_id = de.game_id
-    WHERE g.game_id = #{gameId};
-  </select>
+        gc.game_conf_low_inter, de.game_details_sum, de.game_details_time, de.game_details_downl
+        FROM game g
+        LEFT JOIN game_img im ON g.game_id = im.game_id
+        LEFT JOIN game_conf gc ON g.game_id = gc.game_id
+        LEFT JOIN game_details de ON g.game_id = de.game_id
+        WHERE  g.game_id = #{gameId};
+    </select>
 
 
     <!--根据游戏类型搜索游戏-->
@@ -111,54 +121,5 @@
         LEFT JOIN game_img img ON g.game_id = img.game_id
         WHERE g.game_type_id = #{gameType} AND g.game_status = 0 LIMIT #{howMany}
     </select>
-
-    <!--关联gameDetails-->
-    <resultMap id="BaseResultMap" type="com.one.games.domain.vo.GameVo">
-        <id column="game_id" jdbcType="INTEGER" property="gameId" />
-        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
-        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
-        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
-        <result column="game_id" property="gameId"/>
-        <result property="gameDetails" column="game_details"/>
-        <association property="gameDetailsVo" javaType="com.one.games.domain.vo.GameDetailsVo" resultMap="com.one.games.mapper.GameDetailsMapper.BaseResultMap2">
-
-        </association>
-    </resultMap>
-   <!--关联图片-->
-    <resultMap id="BaseResultMap2" type="com.one.games.domain.vo.GameVo">
-        <id column="game_id" jdbcType="INTEGER" property="gameId" />
-        <result column="game_name" jdbcType="VARCHAR" property="gameName" />
-        <result column="game_status" jdbcType="INTEGER" property="gameStatus" />
-        <result column="game_type_id" jdbcType="INTEGER" property="gameTypeId" />
-        <result column="game_id" property="gameId"/>
-        <association property="gameImg" resultMap="com.one.games.mapper.GameImgMapper.GameImgResultMap"/>
-    </resultMap>
-
-    <!--根据名字查找游戏信息-->
-    <select id="search" resultMap="BaseResultMap">
-        select *
-        from game g
-        left join game_details gd on g.game_id = gd.game_id
-        left join game_img img on g.game_id = img.game_id
-        left join game_consult gc on g.game_id = gc.game_id
-        where g.game_name like concat(concat('%',#{gameName}),'%')
-       <!-- select *
-        from game g
-        left join game_details gd on g.game_id = gd.game_id
-        left join game_conf gc on gd.game_details_id = gc.game_details_id
-        where g.game_name like concat(concat('%',#{gameName}),'%')-->
-    </select>
-
-    <!--游戏图片页面-->
-    <select id="gameIndex" resultMap="BaseResultMap">
-
-        select *
-        from game g
-            left join game_details gd  on g.game_id = gd.game_id
-            left join game_img gi on gd.game_id=gi.game_id
-            where gi.game_img_type=1
-        limit 12
-    </select>
-
 
 </mapper>
